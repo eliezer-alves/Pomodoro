@@ -1,0 +1,123 @@
+<template>
+	<div class="grid grid-cols-1 place-items-center">
+		<div class="my-5">
+			<section class="mb-5 flex justify-center content-center text-2xl">
+				<h5 v-if="!expired">Foco na Missão!</h5>
+				<h5 v-else>Inicie um novo ciclo!</h5>
+			</section>
+			<section class="flex justify-center content-center text-8xl">
+				<div class="minutes mx-2 relative">
+					{{displayMinutes}}
+					<div class="label text-sm botton-0">Minutos</div>
+				</div>
+				<span class="text-7xl mt-2">:</span>
+				<div class="seconds mx-2 relative">
+					{{displaySeconds}}
+					<div class="label text-sm botton-0">Segundos</div>
+				</div>
+			</section>
+		</div>
+		<div class="my-5 w-full">
+			<section>
+				<aside class="mb-2 flex justify-between">
+					<button v-on:click="incremmentInterval()" :disabled="!enableButtonIncrementInterval" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">+</button>
+
+					<button v-on:click="decreaseInterval()" :disbled="!enableButtonDecreaseInterval" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">-</button>
+				</aside>
+
+				<button v-if="!running"  v-on:click="start()" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">Iniciar</button>
+
+				<button v-else v-on:click="exit()" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">Desistir</button>
+			</section>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	props: ["minute"],
+	data: () => ({
+		intervalArray: [15, 25, 30, 40],
+		currentInterval: 0,
+		displayMinutes: '00',
+		displaySeconds: '00',
+		enableButtonIncrementInterval: true,
+		enableButtonDecreaseInterval: true,
+		expired: false,
+		running: false,
+		end: 0
+	}),
+	computed: {
+		_seconds: () => 1000,
+		_minutes() {
+			return this._seconds * 60
+		},
+	},
+	mounted() {
+		this.initialDisplayMode()
+	},
+	methods: {
+		formatNum: (num) => (num < 10 ? "0" + num : num),
+		currentIntervalValue() {
+			return this.intervalArray[this.currentInterval];
+		},
+		initialDisplayMode() {			
+			this.displayMinutes = this.formatNum(this.currentIntervalValue())
+			this.displaySeconds = "00"						
+		},
+		incremmentInterval() {
+			if(this.currentInterval < (this.intervalArray.length - 1)){				
+				this.currentInterval += 1
+				this.initialDisplayMode()
+				this.enableButtonDecreaseInterval = true
+			}
+			else
+				this.enableButtonIncrementInterval = false
+
+			console.log(this.currentIntervalValue())
+		},
+		decreaseInterval(){
+			if(this.currentInterval > 0){
+				this.currentInterval -= 1
+				this.initialDisplayMode()
+				this.enableButtonIncrementInterval = true
+			}
+			else
+				this.enableButtonDecreaseInterval = false
+		},
+		start(){
+			this.initialDisplayMode()
+			this.end = new Date().setMinutes(new Date().getMinutes() + this.currentIntervalValue())
+			this.clockRunning()
+		},
+		exit(initialDisplayMode = true) {
+			this.expired = true
+			this.running = false
+			if(initialDisplayMode) this.initialDisplayMode()
+		},
+		clockRunning() {
+			this.expired = false;
+			this.running = true;
+			const timer = setInterval(() => {
+				const now = new Date()				
+				const interval = this.end - now.getTime()
+
+				if(interval < 0 || !this.running) {
+					clearInterval(timer)
+					this.exit(false)
+					return
+				}
+
+				const minutes = Math.floor(interval / this._minutes)
+				const seconds = Math.floor((interval % this._minutes) / this._seconds)
+				
+				
+				this.displayMinutes = this.formatNum(minutes,minutes)				
+				this.displaySeconds = this.formatNum(seconds, seconds)
+
+			}, 1000)
+		}
+	},
+
+}
+</script>
