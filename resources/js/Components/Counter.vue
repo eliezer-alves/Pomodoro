@@ -20,9 +20,9 @@
 		<div class="my-5 w-full">
 			<section>
 				<aside class="mb-2 flex justify-between">
-					<button v-on:click="incremmentInterval()" :disabled="!enableButtonIncrementInterval" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">+</button>
+					<button v-on:click="incremmentInterval()" :disabled="!enableButtonIncrementInterval" type="button" class="w-full mr-1 focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">+</button>
 
-					<button v-on:click="decreaseInterval()" :disbled="!enableButtonDecreaseInterval" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">-</button>
+					<button v-on:click="decreaseInterval()" :disbled="!enableButtonDecreaseInterval" type="button" class="w-full ml-1 focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">-</button>
 				</aside>
 
 				<button v-if="!running"  v-on:click="start()" type="button" class="w-full focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-purple-500 hover:bg-purple-600 hover:shadow-lg">Iniciar</button>
