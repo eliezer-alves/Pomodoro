@@ -4,7 +4,7 @@
         <nav class="flex w-full items-center justify-start px-6 h-16 bg-white text-gray-700 border-b border-gray-200">
             <div class="flex w-1/4 items-center justify-between">
                 <inertia-link href="/">Dashboard</inertia-link>
-                <inertia-link href="/pomodoro">Pomodoro</inertia-link>
+                <inertia-link href="/pomodoro">PomoVue</inertia-link>
                 <inertia-link href="/about">About</inertia-link>
             </div>
         </nav>
