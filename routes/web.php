@@ -15,3 +15,7 @@ Route::get('/pomodoro', function () {
 Route::get('/about', function () {
     return Inertia::render('About', ['title' => '']);
 });
+
+Route::get('/login', function () {
+    return Inertia::render('Login', ['title' => '']);
+});
