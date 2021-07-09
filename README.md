@@ -9,6 +9,9 @@
 
 ## Primeira Versão do Projeto
 
+![image](https://user-images.githubusercontent.com/23661672/125018155-e8086c80-e04a-11eb-9ccd-7effa7302b44.png)
+<hr />
+
 <div style="display:flex; justify-content:center">
     <img src="https://i.imgur.com/XjPWHxD.jpg" alt="Screenshot" width="500"/>
 </div>
