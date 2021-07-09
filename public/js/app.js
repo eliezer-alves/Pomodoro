@@ -17823,7 +17823,7 @@ var _hoisted_3 = {
   "class": "w-full flex items-center justify-between px-6 h-16 bg-white text-gray-700 border-b border-gray-200"
 };
 var _hoisted_4 = {
-  "class": "flex w-5/12  items-center justify-between"
+  "class": "flex w-3/12  items-center justify-between"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Dashboard");
